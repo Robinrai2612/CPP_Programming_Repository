@@ -19,8 +19,6 @@ class Isosceles : public Triangle
     	{
     		cout<<"I am an isosceles triangle\n";
     	}
-  	//Write your code here.
-  	/* Inheritance Introduction in C++ - Hacker Rank Solution START */
         void description()
         {
             cout << "In an isosceles triangle two sides are equal" << endl;
