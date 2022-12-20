@@ -1,1 +1,35 @@
+int  sum (int count,...) {
+    va_list list;
+    va_start(list, count);
+    long sum = va_arg(list, int);
+    for(int i = 1; i < count; i++){
+        sum+= va_arg(list, int);
+    }
+    va_end(list);
+    return sum;
+}
+
+int min(int count,...) {
+    va_list list;
+    va_start(list, count);
+    long min = va_arg(list, int);
+    for(int i = 1; i < count; i++){
+        int tmp = va_arg(list, int);
+        if(tmp < min) min = tmp;
+    }
+    va_end(list);
+    return min;
+}
+
+int max(int count,...) {
+    va_list list;
+    va_start(list, count);
+    long max = va_arg(list, int);
+    for(int i = 1; i < count; i++){
+        int tmp = va_arg(list, int);
+        if(tmp > max) max = tmp;
+    }
+    va_end(list);
+    return max;
+}
 
