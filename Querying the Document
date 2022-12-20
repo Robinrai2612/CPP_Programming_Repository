@@ -1,1 +1,49 @@
+char* kth_word_in_mth_sentence_of_nth_paragraph(char**** document, int k, int m, int n) {
+    return document[n-1][m-1][k-1];
+}
 
+char** kth_sentence_in_mth_paragraph(char**** document, int k, int m) {
+    return document[m-1][k-1];
+}
+
+char*** kth_paragraph(char**** document, int k) {
+    return document[k-1];
+}
+
+char**** get_document(char* text) {
+   char ** sentance = malloc(sizeof(char *));
+   sentance[0] = text; int s_size = 1;
+   char *** paragraph = malloc(sizeof(char**));
+   paragraph[0] = sentance; int p_size = 1;
+   char **** document = calloc(5,sizeof(char***));
+   document[0] = paragraph; int d_size = 1;
+   while(*text != 0){
+       if(*text == ' '){
+            sentance = realloc(sentance, ++s_size * sizeof(char *));
+            paragraph[p_size-1] = sentance;
+            sentance[s_size-1] = text+1;
+            *text = '\0';
+       }
+       else if(*text == '.'){
+           if(*(text+1) != '\0'){
+                sentance = malloc(sizeof(char *)); s_size = 1;
+                sentance[0] = text+1;
+                if(*(text+1) != '\n'){
+                    paragraph = realloc(paragraph, ++p_size * sizeof(char **));
+                    paragraph[p_size-1] = sentance;
+                    document[d_size-1] = paragraph;
+                }
+            }
+            *text = '\0';
+        }
+        else if(*text == '\n'){
+            sentance[0]++;
+            paragraph = malloc(sizeof(char **)); p_size = 1;
+            paragraph[0] = sentance;
+            document[d_size++] = paragraph;
+            *text = '\0';
+        }
+       text++;
+   }
+   return document;
+}
