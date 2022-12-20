@@ -1,1 +1,49 @@
-
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        if(k < 2) {
+            return head;
+        }
+        ListNode *result = new ListNode(0);
+        result->next = head;
+        ListNode *cur = head, *start = head, *nextP, *preP = result, *head2, *tail;
+        int count = 0;
+        while(cur) {
+            count ++;
+            if(count == 1) {
+                //Record the start point of every son list.
+                head2 = preP;
+                start = cur;
+                preP = cur;
+                if(cur) {
+                    cur = cur->next;
+                }
+            }
+            else if(count == k) {
+                //Record the next point of every son lists.
+                tail = cur->next;
+                cur = start->next;
+                preP = start;
+                nextP = cur->next;
+                while(count > 1) {
+                    cur->next = head2->next;
+                    head2->next = cur;
+                    preP->next = nextP;
+                    cur = nextP;
+                    if(nextP) {
+                        nextP = nextP->next;
+                    }
+                    count --;
+                }
+                count = 0;
+            }
+            else {
+                preP = cur;
+                if(cur) {
+                    cur = cur->next;
+                }
+            }
+        }
+        return result->next;
+    }
+};
