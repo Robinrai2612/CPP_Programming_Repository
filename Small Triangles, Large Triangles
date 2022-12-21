@@ -1,1 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+struct triangle
+{
+	int a;
+	int b;
+	int c;
+};
+
+typedef struct triangle triangle;
+void sort_by_area(triangle* tr, int n) {
+	/**
+	* Sort an array a of the length n
+	*/
+    int i,j;
+    double *s,p=0;
+    s=(double*)calloc(n, sizeof(double));
+    triangle temp;
+    double tempp;
+    for(i=0;i<n;i++)
+    {
+        p=(tr[i].a+tr[i].b+tr[i].c)/2.0;
+        s[i]=sqrt(p*(p-tr[i].a)*(p-tr[i].b)*(p-tr[i].c));
+    }
+    tempp=s[0];
+    for(i = 0; i < n ; ++i)
+    {
+        for(j = i+1; j < n; ++j)
+        {
+            if(s[i] > s[j] )
+            {
+                tempp=s[i];
+                s[i]=s[j];
+                s[j]=tempp;
+                
+                 temp = *(tr + i);
+                *(tr + i) = *(tr + j);
+                *(tr + j) = temp;
+                
+            }
+        }
+    }
+}
+
 
