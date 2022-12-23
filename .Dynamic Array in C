@@ -1,1 +1,13 @@
+if (total_number_of_books == NULL)
+            total_number_of_books = (int *)calloc( total_number_of_shelves, sizeof(int));
+        if (total_number_of_pages == NULL) {
+            total_number_of_pages = (int **)calloc( total_number_of_shelves, sizeof(int*));
+           for (int i = 0; i < total_number_of_shelves; i++)
+               total_number_of_pages[i] = (int *)calloc(1100,sizeof(int)); 
+        }
 
+        int x, y;
+        scanf("%d %d", &x, &y);  
+
+        total_number_of_pages[x][total_number_of_books[x]] = y;
+        total_number_of_books[x]++;
