@@ -1,1 +1,4 @@
-
+char *words[] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+        "Greater than 9"};
+        
+    printf("%s\n", (n <= 10) ? words[n-1] : words[9]);
