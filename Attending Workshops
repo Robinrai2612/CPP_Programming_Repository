@@ -1,1 +1,43 @@
+#include<bits/stdc++.h>
 
+using namespace std;
+struct Workshop{
+    int s;
+    int e;
+    int d;
+    
+    bool operator <(const Workshop& w2){
+        return e < w2.e ;
+    }
+};
+
+struct Available_Workshops{
+    int n;
+    Workshop* w;
+};
+
+Available_Workshops* initialize(int s[], int d[], int n){
+    Available_Workshops* ws = new Available_Workshops;
+    ws->n = n;
+    ws->w = new Workshop[n];
+    for(int i=0;i<n;i++){
+        ws->w[i] = {s[i], s[i]+d[i], d[i]};
+    }
+    return ws;
+}
+
+int CalculateMaxWorkshops(Available_Workshops* ptr){
+    sort(ptr->w, ptr->w+ptr->n);
+    int maxi = 0, last = 0;
+    for(int i=0;i<ptr->n;i++){
+        if(ptr->w[i].s>=last){
+            maxi++;
+            last = ptr->w[i].e;
+        }
+    }
+    return maxi;
+}
+//Define the structs Workshops and Available_Workshops.
+//Implement the functions initialize and CalculateMaxWorkshops
+
+int main(int argc, char *argv[]) {
