@@ -1,1 +1,5 @@
-
+ostream & operator<<(ostream &ostr, const Person &person)
+{
+    ostr << "first_name=" << person.get_first_name() << ",last_name=" << person.get_last_name();
+    return ostr;
+}
