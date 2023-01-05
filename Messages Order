@@ -1,1 +1,22 @@
+class Message {
+public: 
+    Message() {}
+    string _text;
+    int _num;
+    const string& get_text() {
+        return _text;
+    }
+    Message(int num, string text): _text(text), _num(num) {}
+    bool operator<(const Message &o) {return _num<o._num;}
+};
 
+class MessageFactory {
+  static int _num;
+public:
+    MessageFactory() {}
+    Message create_message(const string& text) {
+        return Message(_num++, text);
+    }
+};
+
+int MessageFactory::_num(0);
